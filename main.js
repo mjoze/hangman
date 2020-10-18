@@ -75,26 +75,6 @@ const game = new Game()
 game.newGame(hasła)
 game.startGame(hasła)
 
-// const newGame = (passwords) => {
-//     const gameName = new Sentences(passwords);
-//     const randomNumber = Math.floor(Math.random() * (passwords.length));
-//     gameName.makeArrSentence(randomNumber);
-//     console.log(gameName.sentenceToAsk);
-//     gameName.makeGameArr();
-//     return gameName
-// }
-// function startGame(game) {
-//     const letter = document.querySelector('.inputLetter');
-//     if (!game.endGame) {
-//         game.checkSentence(letter.value)
-//     }
-//     letter.value = ''
-// }
-
-// const hasło = { 'film': 'obcy', 'sport': 'koszykowka', 'pojazd': 'kareta' }
-
-// const a = newGame(['obcy', 'koszykowka', 'kareta'])
-
 btnLetter.addEventListener('click', (e) => game.startGame(hasła))
 
 
