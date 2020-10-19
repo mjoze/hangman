@@ -51,30 +51,3 @@ class Sentences {
         }
     }
 }
-
-class Game {
-    hasła = new Sentences(this.passwords)
-    constructor(passwords) {
-        this.passwords = new Sentences(passwords)
-    }
-    newGame(passwords) {
-        const randomNumber = Math.floor(Math.random() * (hasła.sentences.length));
-        passwords.makeArrSentence(randomNumber);
-        passwords.makeGameArr();
-    }
-    startGame(passwords) {
-        const letter = document.querySelector('.inputLetter');
-        if (!passwords.endGame) {
-            passwords.checkSentence(letter.value)
-        }
-        letter.value = ''
-    }
-}
-const hasła = new Sentences(['obcy', 'koszykowka', 'kareta'])
-const game = new Game()
-game.newGame(hasła)
-game.startGame(hasła)
-
-btnLetter.addEventListener('click', (e) => game.startGame(hasła))
-
-
