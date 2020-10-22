@@ -2,12 +2,14 @@ const btnLetter = document.querySelector('.sendLetter')
 
 
 class Sentences {
+
+    gameEmptyArr = []
+    helpArrToCheckRepeat = []
+    sentenceToAsk = []
+    placeToGenerate = document.querySelector('.game')
+
     constructor(sentences) {
         this.sentences = sentences
-        this.helpArrToCheckRepeat = []
-        this.gameEmptyArr = []
-        this.sentenceToAsk = []
-        this.placeToGenerate = document.querySelector('.game')
         this.endGame = false
     }
 
@@ -51,3 +53,8 @@ class Sentences {
         }
     }
 }
+const game = new Sentences(["pudło", "pop"])
+game.makeArrSentence(1)
+game.makeGameArr();
+game.checkSentence('p')
+console.log(game);
