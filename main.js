@@ -1,6 +1,3 @@
-const btnLetter = document.querySelector('.sendLetter')
-
-
 class Sentences {
 
     gameEmptyArr = []
@@ -47,17 +44,27 @@ class Sentences {
             });
         }
         if (this.gameEmptyArr.join('') === this.sentenceToAsk.join('')) {
-            console.log('koniec');
             message.textContent += 'i koniec'
             this.endGame = true
         }
     }
     runGame() {
-        this.makeArrSentence(1);
+        const number = Math.floor(Math.random() * this.sentences.length) + 1;
+        this.makeArrSentence(number - 1);
         this.makeGameArr();
-
+        console.log(this.sentenceToAsk);
+    }
+    checkGame() {
+        const btnLetter = document.querySelector('.inputLetter');
+        this.checkSentence(btnLetter.value)
+        btnLetter.value = ''
     }
 }
-const game = new Sentences(["pudło", "pop"])
-game.runGame()
-game.checkSentence('p')
+const game = new Sentences(["pudło", "pop", "kotek"])
+game.runGame();
+
+const btn = document.querySelector('.sendLetter')
+btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    game.checkGame()
+})
