@@ -52,9 +52,12 @@ class Sentences {
             this.endGame = true
         }
     }
+    runGame() {
+        this.makeArrSentence(1);
+        this.makeGameArr();
+
+    }
 }
 const game = new Sentences(["pudło", "pop"])
-game.makeArrSentence(1)
-game.makeGameArr();
+game.runGame()
 game.checkSentence('p')
-console.log(game);
