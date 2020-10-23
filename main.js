@@ -1,16 +1,21 @@
 class Sentences {
+    categories = { 'film': ['chłopi', 'avengers', 'gladiator', 'matrix'], 'sport': ['koszykówka', 'siatkówka'], 'rasy psów': ['mops', 'owczarek'] }
 
     gameEmptyArr = []
     helpArrToCheckRepeat = []
     sentenceToAsk = []
     placeToGenerate = document.querySelector('.game')
+    failures = 0
 
     constructor(sentences) {
         this.sentences = sentences
         this.endGame = false
+        this.category = ''
     }
 
     makeGameArr() {
+        const h2 = document.querySelector('h2');
+        h2.textContent = this.category
         for (let _ of this.sentenceToAsk) {
             const element = document.createElement('div')
             this.gameEmptyArr.push('-')
@@ -28,10 +33,12 @@ class Sentences {
 
         if (this.helpArrToCheckRepeat.includes(letter)) {
             message.textContent = 'już było'
+            this.failures += 1
             return
         }
         if (!this.sentenceToAsk.includes(letter)) {
             message.textContent = 'pudło';
+            this.failures += 1
         }
         else {
             this.sentenceToAsk.forEach((el, index) => {
@@ -43,12 +50,13 @@ class Sentences {
                 }
             });
         }
-        if (this.gameEmptyArr.join('') === this.sentenceToAsk.join('')) {
-            message.textContent += 'i koniec'
+        if ((this.gameEmptyArr.join('') === this.sentenceToAsk.join(''))) {
             this.endGame = true
+            message.textContent += 'i koniec'
         }
     }
     runGame() {
+        this.drawCategories()
         const number = Math.floor(Math.random() * this.sentences.length) + 1;
         this.makeArrSentence(number - 1);
         this.makeGameArr();
@@ -56,15 +64,48 @@ class Sentences {
     }
     checkGame() {
         const btnLetter = document.querySelector('.inputLetter');
+        const h4 = document.querySelector('h4')
         this.checkSentence(btnLetter.value)
         btnLetter.value = ''
+        console.log(this.endGame);
+        if (this.endGame === true) {
+            const form = document.querySelector('form');
+            form.innerHTML = ''
+        }
+        h4.textContent = this.failures
+
+    }
+    reset() {
+        this.runGame()
+    }
+    drawCategories() {
+        const cat = []
+        console.log(this.categories);
+        const a = this.categories
+        for (const key in a) {
+            cat.push(key);
+        }
+        const numb = Math.floor(Math.random() * cat.length);
+        const sentences = this.categories[cat[numb]]
+        const category = cat[numb]
+        this.category = category
+        this.sentences = sentences
     }
 }
-const game = new Sentences(["pudło", "pop", "kotek"])
+
+
+const btn = document.querySelector('.sendLetter');
+const resetBtn = document.querySelector('.btn');
+
+const game = new Sentences()
 game.runGame();
 
-const btn = document.querySelector('.sendLetter')
+
 btn.addEventListener('click', (e) => {
     e.preventDefault()
     game.checkGame()
+})
+
+resetBtn.addEventListener('click', () => {
+    window.location.reload(true)
 })
