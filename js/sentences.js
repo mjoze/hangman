@@ -1,5 +1,7 @@
+import { categories } from './quotes.js';
+
 export class Sentences {
-    categories = { 'film': ['chłopi', 'avengers', 'gladiator', 'matrix'], 'sport': ['koszykówka', 'siatkówka'], 'rasy psów': ['mops', 'owczarek'] }
+    categories = categories
 
     gameEmptyArr = []
     helpArrToCheckRepeat = []
@@ -59,7 +61,8 @@ export class Sentences {
         }
         if (this.failures === 6) {
             this.endGame = true;
-            message.textContent = 'porażka wisisz !'
+            message.textContent = `porażka wisisz ! hasło to :
+            ${this.sentenceToAsk.join('')}`;
         }
 
     }

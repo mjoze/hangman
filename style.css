@@ -1,3 +1,8 @@
+*{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background-color: #909090;
+}
+h2{text-transform: uppercase;}
 .container{
 margin-left: 50px;
 font-family: arial;
@@ -27,7 +32,7 @@ input{
 }
 
 .btn {
-    background-color: #fff;
+    background-color: red;
     border: 2px solid black;
     text-transform: uppercase;
     padding: 5px 10px;
