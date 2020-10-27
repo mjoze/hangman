@@ -75,7 +75,7 @@ export class Sentences {
     checkGame() {
         const btnLetter = document.querySelector('.inputLetter');
         const h4 = document.querySelector('h4');
-        this.checkSentence(btnLetter.value);
+        this.checkSentence(btnLetter.value.toLowerCase());
         btnLetter.value = '';
         if (this.endGame === true) {
             const form = document.querySelector('form');
