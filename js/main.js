@@ -1,4 +1,5 @@
 import { Sentences } from './sentences.js'
+import { drawGallows } from './draw.js'
 
 
 const btn = document.querySelector('.sendLetter');
@@ -11,6 +12,7 @@ game.runGame();
 btn.addEventListener('click', (e) => {
     e.preventDefault();
     game.checkGame();
+    drawGallows('#canvas', game)
 })
 
 resetBtn.addEventListener('click', () => {

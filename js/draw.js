@@ -41,3 +41,25 @@ export const gallows = {
         }
 }
 
+export const drawGallows = (elementCanvas, game) => {
+    const canvas = document.querySelector(elementCanvas);
+    const ctx = canvas.getContext('2d');
+    if (game.failures === 1) {
+        gallows[1](ctx)
+    }
+    if (game.failures === 2) {
+        gallows[2](ctx)
+    }
+    if (game.failures === 3) {
+        gallows[3](ctx)
+    }
+    if (game.failures === 4) {
+        gallows[4](ctx)
+    }
+    if (game.failures === 5) {
+        gallows[5](ctx)
+    }
+    if (game.failures === 6) {
+        gallows[6](ctx)
+    }
+}

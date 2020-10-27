@@ -1,5 +1,3 @@
-import { gallows } from './draw.js'
-
 export class Sentences {
     categories = { 'film': ['chłopi', 'avengers', 'gladiator', 'matrix'], 'sport': ['koszykówka', 'siatkówka'], 'rasy psów': ['mops', 'owczarek'] }
 
@@ -33,10 +31,12 @@ export class Sentences {
         const blankAreas = document.querySelectorAll('.passwordDiv');
         const message = document.querySelector('p');
 
+
         if (this.helpArrToCheckRepeat.includes(letter)) {
             let number = 1
             message.textContent = 'już było';
             this.failures += number;
+
             return
         }
         if (!this.sentenceToAsk.includes(letter)) {
@@ -55,8 +55,13 @@ export class Sentences {
         }
         if ((this.gameEmptyArr.join('') === this.sentenceToAsk.join(''))) {
             this.endGame = true;
-            message.textContent += 'i koniec';
+            message.textContent = 'koniec, wygrana';
         }
+        if (this.failures === 6) {
+            this.endGame = true;
+            message.textContent = 'porażka wisisz !'
+        }
+
     }
     runGame() {
         this.drawCategories()
