@@ -8,16 +8,20 @@ export class Sentences {
     sentenceToAsk = []
     placeToGenerate = document.querySelector('.game')
     failures = 0
+    sentences = []
 
-    constructor(sentences) {
-        this.sentences = sentences
+    constructor(categoryTxt, messageField, inputField, errorsCounterField) {
+
         this.endGame = false
         this.category = ''
+        this.categoryTxt = document.querySelector(categoryTxt);
+        this.messageField = document.querySelector(messageField);
+        this.inputLetter = document.querySelector(inputField);
+        this.errorsCounterField = document.querySelector(errorsCounterField);
     }
 
     makeGameArr() {
-        const h2 = document.querySelector('h2');
-        h2.textContent = this.category;
+        this.categoryTxt.textContent = this.category;
         for (let _ of this.sentenceToAsk) {
             const element = document.createElement('div');
             this.gameEmptyArr.push('-');
@@ -30,19 +34,18 @@ export class Sentences {
         this.sentenceToAsk = this.sentences[number].split('');
     }
     checkSentence(letter) {
-        const blankAreas = document.querySelectorAll('.passwordDiv');
-        const message = document.querySelector('p');
 
+        const blankAreas = document.querySelectorAll('.passwordDiv');
 
         if (this.helpArrToCheckRepeat.includes(letter)) {
             let number = 1
-            message.textContent = 'już było';
+            this.messageField.textContent = 'już było';
             this.failures += number;
 
             return
         }
         if (!this.sentenceToAsk.includes(letter)) {
-            message.textContent = 'pudło';
+            this.messageField.textContent = 'pudło';
             this.failures += 1;
         }
         else {
@@ -50,18 +53,18 @@ export class Sentences {
                 if (el === letter) {
                     this.gameEmptyArr[index] = letter;
                     blankAreas[index].textContent = letter;
-                    message.textContent = 'trafiony';
+                    this.messageField.textContent = 'trafiony';
                     this.helpArrToCheckRepeat.push(letter);
                 }
             });
         }
         if ((this.gameEmptyArr.join('') === this.sentenceToAsk.join(''))) {
             this.endGame = true;
-            message.textContent = 'koniec, wygrana';
+            this.messageField.textContent = 'koniec, wygrana';
         }
         if (this.failures === 6) {
             this.endGame = true;
-            message.textContent = `porażka wisisz ! hasło to :
+            this.messageField.textContent = `porażka wisisz ! hasło to :
             ${this.sentenceToAsk.join('')}`;
         }
 
@@ -73,34 +76,30 @@ export class Sentences {
         this.makeGameArr();
     }
     checkGame() {
-        const btnLetter = document.querySelector('.inputLetter');
-        const h4 = document.querySelector('h4');
-        this.checkSentence(btnLetter.value.toLowerCase());
-        btnLetter.value = '';
+
+        this.checkSentence(this.inputLetter.value.toLowerCase());
+        this.inputLetter.value = '';
         if (this.endGame === true) {
             const form = document.querySelector('form');
             form.innerHTML = '';
         }
-        h4.textContent = this.failures;
+        this.errorsCounterField.textContent = this.failures;
 
     }
     reset() {
         this.runGame();
     }
     drawCategories() {
-        const cat = [];
-        const a = this.categories;
-        for (const key in a) {
-            cat.push(key);
+        const categoryToDraw = [];
+        const categoryArr = this.categories;
+        for (const key in categoryArr) {
+            categoryToDraw.push(key);
         }
-        const numb = Math.floor(Math.random() * cat.length);
-        const sentences = this.categories[cat[numb]];
-        const category = cat[numb];
+        const numb = Math.floor(Math.random() * categoryToDraw.length);
+        const sentences = this.categories[categoryToDraw[numb]];
+        const category = categoryToDraw[numb];
         this.category = category;
         this.sentences = sentences;
-    }
-    drawPiceture() {
-
     }
 
 }

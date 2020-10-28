@@ -14,7 +14,7 @@
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-h2 {
+.category {
     text-transform: uppercase;
 }
 
@@ -23,8 +23,19 @@ h2 {
     margin-bottom: 30px;
 }
 
+.game div {
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px 10px;
+}
+
+
 form { 
     margin: 20px 0;
+}
+input{
+    padding: 10px 10px;
+    border: 2px solid black;
 }
 
 .sendLetter {
@@ -33,17 +44,6 @@ form {
     text-transform: uppercase;
     padding: 10px 10px;
     cursor: pointer;
-}
-
-input{
-    padding: 10px 10px;
-    border: 2px solid black;
-}
-
-.game div {
-    border: 2px solid black;
-    margin: 10px;
-    padding: 5px 10px;
 }
 
 .btn {

@@ -5,7 +5,7 @@ import { drawGallows } from './draw.js'
 const btn = document.querySelector('.sendLetter');
 const resetBtn = document.querySelector('.btn');
 
-const game = new Sentences();
+const game = new Sentences('.category', '.message', '.inputLetter', '.errorsCounter');
 game.runGame();
 
 
